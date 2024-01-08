@@ -12,9 +12,9 @@ jobs:
     - uses: actions/checkout@v2
     # sets up .NET Core SDK 3.1
     - name: Setup .NET Core SDK
-      uses: actions/setup-dotnet@v4.0.0
+      uses: actions/setup-dotnet@v8.0.0
       with:
-        dotnet-version: 4.0
+        dotnet-version: 8.0
         # publishes Blazor project to the release-folder
     - name: Publish .NET Core Project
       run: dotnet publish BlazorGitHubPagesDemo.csproj -c Release -o release --nologo
