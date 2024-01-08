@@ -10,27 +10,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout Repository
+      uses: actions/checkout@v2
 
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '3.1'
+    - name: Use Node.js 16
+      uses: actions/setup-node@v4
+      with:
+        node-version: 16
 
-      - name: Build and publish
-        run: |
-          dotnet publish -c Release -o out
-          mv out/* $GITHUB_WORKSPACE
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '8.0.0'
 
-  deploy:
-    runs-on: ubuntu-latest
+    - name: Restore Dependencies
+      run: dotnet restore
 
-    needs: build
+    - name: Build Project
+      run: dotnet build --configuration Release
 
-    steps:
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./wwwroot
+    - name: Run Tests
+      run: dotnet test
+
+    - name: Publish Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: publish
+        path: ./path/to/your/publish/folder
