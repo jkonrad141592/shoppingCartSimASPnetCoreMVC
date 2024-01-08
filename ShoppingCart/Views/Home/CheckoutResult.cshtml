@@ -1,0 +1,13 @@
+﻿<!-- Views/Home/TransactionHistory.cshtml -->
+
+<h1>Checkout Result</h1>
+
+<h2>Cart Items:</h2>
+<ul>
+    @foreach (var item in (List<string>)ViewData["CartItems"])
+    {
+        <li>@item</li>
+    }
+</ul>
+
+<h2>Total: $@ViewData["CartTotal"]</h2>

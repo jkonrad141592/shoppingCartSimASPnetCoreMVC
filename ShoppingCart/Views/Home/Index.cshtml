@@ -1,0 +1,27 @@
+﻿@model List<Product>
+<script src="js/shoppingCart.js"></script>
+<link rel="stylesheet" href="/css/shoppingCart.css" />
+
+<h2>Available Products</h2>
+<ul>
+    @foreach (var product in Model)
+    {
+        <li>
+            <strong>@product.Title</strong> (SKU: @product.Sku) - $@product.Price
+            <div>
+                <button type="button" class="btn btn-primary" onclick="addToCart('@product.Title.Replace("'", "")', @product.Price)">Add to Cart</button>
+            </div>
+        </li>
+    }
+</ul>
+
+<hr>
+
+<h2>Shopping Cart</h2>
+
+<div style="text-align: right; position: relative;">
+    <div id="total" style="position: absolute; top: 0; right: 0;">Total: $0.00</div>
+    <button type="button" class="btn btn-primary" onclick="checkout()" style="position: absolute; top: 30px; right: 0;">Checkout</button>
+</div>
+
+<div id="cart" style='padding-bottom:60px;'></div>

@@ -1,0 +1,18 @@
+
+/* css for index.cshtml view */
+
+/* Styles for Available Products */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* Styles for Shopping Cart */
+#cart {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
